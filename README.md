@@ -21,7 +21,7 @@ Step 2. Add the dependency
 
 ``` gradle
 dependencies {
-    implementation 'com.github.kongqw:QQHelper:1.1.0'
+    implementation 'com.github.kongqw:QQHelper:1.0.0'
 }
 ``` 
 
