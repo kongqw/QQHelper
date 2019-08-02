@@ -21,7 +21,7 @@ Step 2. Add the dependency
 
 ``` gradle
 dependencies {
-    implementation 'com.github.kongqw:QQHelper:1.0.0'
+    implementation 'com.github.kongqw:QQHelper:1.0.1'
 }
 ``` 
 
@@ -61,7 +61,7 @@ QQHelper.getInstance().shareImageAndText(`activity`, `标题`, `摘要`, `链接
 QQHelper.getInstance().shareLocalImage(`activity`, `本地图片地址`, `监听接口`)
 ```
 
-### 分享到QQ控件
+### 分享到QQ空间
 
 ``` kotlin
 QQHelper.getInstance().shareToQZone(`activity`, `标题`, `摘要`, `链接`, `缩略图`, `监听接口`)

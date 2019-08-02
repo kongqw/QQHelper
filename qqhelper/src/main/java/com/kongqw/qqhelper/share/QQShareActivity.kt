@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import com.kongqw.qqhelper.QQHelper
 import com.kongqw.qqhelper.utils.Logger
 import com.kongqw.qqhelper.utils.MetaUtil
@@ -48,7 +47,7 @@ class QQShareActivity : AppCompatActivity(), IUiListener {
      * 分享完成
      */
     override fun onComplete(p0: Any?) {
-        Toast.makeText(applicationContext, "分享完成", Toast.LENGTH_SHORT).show()
+        Logger.d("分享完成")
         QQHelper.mQQUiListener?.onQQShareComplete(p0)
         finish()
     }
@@ -57,7 +56,7 @@ class QQShareActivity : AppCompatActivity(), IUiListener {
      * 分享取消
      */
     override fun onCancel() {
-        Toast.makeText(applicationContext, "分享取消", Toast.LENGTH_SHORT).show()
+        Logger.d("分享取消")
         QQHelper.mQQUiListener?.onQQShareCancel()
         finish()
     }
@@ -66,7 +65,7 @@ class QQShareActivity : AppCompatActivity(), IUiListener {
      * 分享异常
      */
     override fun onError(p0: UiError?) {
-        Toast.makeText(applicationContext, "分享异常", Toast.LENGTH_SHORT).show()
+        Logger.d("分享异常 errorCode = ${p0?.errorCode}  errorMessage = ${p0?.errorMessage}  errorDetail = ${p0?.errorDetail}")
         QQHelper.mQQUiListener?.onQQShareError(p0?.errorCode, p0?.errorMessage, p0?.errorDetail)
         finish()
     }
