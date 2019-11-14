@@ -27,6 +27,7 @@ class QQHelper {
             IS_LOGGABLE = isLoggable
         }
 
+        @JvmStatic
         fun getInstance() = instance ?: synchronized(this) {
             instance
                 ?: QQHelper().also { instance = it }
