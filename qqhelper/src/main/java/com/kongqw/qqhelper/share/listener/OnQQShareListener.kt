@@ -9,4 +9,6 @@ interface OnQQShareListener {
     fun onQQShareCancel()
 
     fun onQQShareError(errorCode: Int?, errorMessage: String?, errorDetail: String?)
+
+    fun onQQShareWarning(code: Int)
 }

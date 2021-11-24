@@ -8,4 +8,5 @@ interface OnQQAuthLoginListener {
     fun onQQAuthLoginCancel()
     fun onQQAuthLoginFail()
     fun onQQAuthLoginError(errorCode: Int?, errorMessage: String?, errorDetail: String?)
+    fun onQQAuthLoginWarning(code: Int)
 }

@@ -7,7 +7,7 @@ object Logger {
 
     fun d(log: String?) {
         if (QQHelper.IS_LOGGABLE) {
-            Log.d("Logger", log)
+            Log.d("Logger", log ?: "")
         }
     }
 }

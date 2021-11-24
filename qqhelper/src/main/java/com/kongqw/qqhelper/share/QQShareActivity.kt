@@ -39,7 +39,8 @@ class QQShareActivity : AppCompatActivity(), IUiListener {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        Logger.d("requestCode = $requestCode  resultCode = $resultCode")
+        Logger.d("onActivityResult($requestCode, $resultCode, $data)")
+        super.onActivityResult(requestCode, resultCode, data)
         Tencent.onActivityResultData(requestCode, resultCode, data, this)
     }
 
@@ -47,7 +48,7 @@ class QQShareActivity : AppCompatActivity(), IUiListener {
      * 分享完成
      */
     override fun onComplete(p0: Any?) {
-        Logger.d("分享完成")
+        Logger.d("分享完成  onComplete($p0)")
         QQHelper.mQQUiListener?.onQQShareComplete(p0)
         finish()
     }
@@ -56,8 +57,17 @@ class QQShareActivity : AppCompatActivity(), IUiListener {
      * 分享取消
      */
     override fun onCancel() {
-        Logger.d("分享取消")
+        Logger.d("分享取消  onCancel()")
         QQHelper.mQQUiListener?.onQQShareCancel()
+        finish()
+    }
+
+    /**
+     * 分享警告
+     */
+    override fun onWarning(p0: Int) {
+        Logger.d("分享异常  onWarning($p0)")
+        QQHelper.mQQUiListener?.onQQShareWarning(p0)
         finish()
     }
 
@@ -65,9 +75,8 @@ class QQShareActivity : AppCompatActivity(), IUiListener {
      * 分享异常
      */
     override fun onError(p0: UiError?) {
-        Logger.d("分享异常 errorCode = ${p0?.errorCode}  errorMessage = ${p0?.errorMessage}  errorDetail = ${p0?.errorDetail}")
+        Logger.d("分享异常  onError($p0)")
         QQHelper.mQQUiListener?.onQQShareError(p0?.errorCode, p0?.errorMessage, p0?.errorDetail)
         finish()
     }
-
 }

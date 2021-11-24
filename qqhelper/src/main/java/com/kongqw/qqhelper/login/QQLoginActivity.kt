@@ -26,8 +26,7 @@ class QQLoginActivity : AppCompatActivity() {
             try {
                 val jsonObject = p0 as JSONObject
 
-                mQQLoginInfo?.access_token =
-                    if (jsonObject.has("access_token")) jsonObject.getString("access_token") else ""
+                mQQLoginInfo?.access_token = if (jsonObject.has("access_token")) jsonObject.getString("access_token") else ""
                 mQQLoginInfo?.expires_in = if (jsonObject.has("expires_in")) jsonObject.getString("expires_in") else ""
                 mQQLoginInfo?.openid = if (jsonObject.has("openid")) jsonObject.getString("openid") else ""
 
@@ -51,6 +50,12 @@ class QQLoginActivity : AppCompatActivity() {
          */
         override fun onCancel() {
             Logger.d("onQQAuthLoginCancel")
+            QQHelper.mOnQQAuthLoginListener?.onQQAuthLoginCancel()
+            finish()
+        }
+
+        override fun onWarning(p0: Int) {
+            Logger.d("onWarning()")
             QQHelper.mOnQQAuthLoginListener?.onQQAuthLoginCancel()
             finish()
         }
@@ -114,6 +119,15 @@ class QQLoginActivity : AppCompatActivity() {
         }
 
         /**
+         * 警告
+         */
+        override fun onWarning(p0: Int) {
+            Logger.d("onWarning($p0)")
+            QQHelper.mOnQQAuthLoginListener?.onQQAuthLoginWarning(p0)
+            finish()
+        }
+
+        /**
          * 登录失败
          */
         override fun onError(p0: UiError?) {
@@ -170,8 +184,7 @@ class QQLoginActivity : AppCompatActivity() {
             return null
         }
         return try {
-            context.packageManager?.getApplicationInfo(context.packageName, PackageManager.GET_META_DATA)
-                ?.metaData?.get(key)?.toString()
+            context.packageManager?.getApplicationInfo(context.packageName, PackageManager.GET_META_DATA)?.metaData?.get(key)?.toString()
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
             null

@@ -10,6 +10,7 @@ import com.kongqw.qqhelper.share.QQShareActivity
 import com.kongqw.qqhelper.share.listener.OnQQShareListener
 import com.tencent.connect.share.QQShare
 import com.tencent.connect.share.QzoneShare
+import com.tencent.tauth.Tencent
 
 class QQHelper {
 
@@ -22,15 +23,16 @@ class QQHelper {
         var mQQUiListener: OnQQShareListener? = null
         var mOnQQAuthLoginListener: OnQQAuthLoginListener? = null
 
-        fun init(isLoggable: Boolean) {
+        fun init(isLoggable: Boolean, isPermissionGranted: Boolean = true) {
 
             IS_LOGGABLE = isLoggable
+
+            Tencent.setIsPermissionGranted(isPermissionGranted)
         }
 
         @JvmStatic
         fun getInstance() = instance ?: synchronized(this) {
-            instance
-                ?: QQHelper().also { instance = it }
+            instance ?: QQHelper().also { instance = it }
         }
     }
 
