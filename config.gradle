@@ -9,13 +9,13 @@ project.ext {
     ]
 
     constants = [
-            applicationId      : "com.easyvaas.sqk",
+            applicationId      : "xxx",
             group              : "com.github.kongqw",
-            QQ_APP_ID          : "1106194332",
+            QQ_APP_ID          : "xxx",
 
-            SIGN_TORE_FILE_PATH: "/Users/kongqw/Workspace/YiShiYun/kkandroid/singer/3000kr.keystore",
-            SIGN_STORE_PASSWORD: "3000kr",
-            SIGN_KEY_ALIAS     : "3000kr",
-            SIGN_KEY_PASSWORD  : "3000kr"
+            SIGN_TORE_FILE_PATH: "xxx",
+            SIGN_STORE_PASSWORD: "xxx",
+            SIGN_KEY_ALIAS     : "xxx",
+            SIGN_KEY_PASSWORD  : "xxx"
     ]
 }
