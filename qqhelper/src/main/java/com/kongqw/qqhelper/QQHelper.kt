@@ -8,6 +8,7 @@ import com.kongqw.qqhelper.login.QQLoginActivity
 import com.kongqw.qqhelper.login.listener.OnQQAuthLoginListener
 import com.kongqw.qqhelper.share.QQShareActivity
 import com.kongqw.qqhelper.share.listener.OnQQShareListener
+import com.kongqw.qqhelper.utils.AppUtils
 import com.tencent.connect.share.QQShare
 import com.tencent.connect.share.QzoneShare
 import com.tencent.tauth.Tencent
@@ -36,19 +37,16 @@ class QQHelper {
         }
     }
 
-
     /**
      * 分享图文
      */
-    fun shareImageAndText(
-        activity: Activity,
-        title: String,
-        summary: String,
-        targetUrl: String,
-        imageUrl: String,
-        listener: OnQQShareListener
-    ) {
+    fun shareImageAndText(activity: Activity, title: String, summary: String, targetUrl: String, imageUrl: String, listener: OnQQShareListener) {
         mQQUiListener = listener
+        // 检查QQ是否安装
+        if(!AppUtils.isQQInstalled(activity)){
+            mQQUiListener?.onNotInstall()
+            return
+        }
         val params = Bundle()
         params.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QQShare.SHARE_TO_QQ_TYPE_DEFAULT)
         params.putString(QQShare.SHARE_TO_QQ_TITLE, title)
@@ -62,12 +60,13 @@ class QQHelper {
     /**
      * 分享纯图片
      */
-    fun shareLocalImage(
-        activity: Activity,
-        localImageUrl: String,
-        listener: OnQQShareListener
-    ) {
+    fun shareLocalImage(activity: Activity, localImageUrl: String, listener: OnQQShareListener) {
         mQQUiListener = listener
+        // 检查QQ是否安装
+        if(!AppUtils.isQQInstalled(activity)){
+            mQQUiListener?.onNotInstall()
+            return
+        }
         val params = Bundle()
         params.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QQShare.SHARE_TO_QQ_TYPE_IMAGE)
         params.putString(QQShare.SHARE_TO_QQ_IMAGE_LOCAL_URL, localImageUrl)
@@ -78,15 +77,13 @@ class QQHelper {
     /**
      * 分享到QQ空间
      */
-    fun shareToQZone(
-        activity: Activity,
-        title: String,
-        summary: String,
-        targetUrl: String,
-        imageUrl: String,
-        listener: OnQQShareListener
-    ) {
+    fun shareToQZone(activity: Activity, title: String, summary: String, targetUrl: String, imageUrl: String, listener: OnQQShareListener) {
         mQQUiListener = listener
+        // 检查QQ是否安装
+        if(!AppUtils.isQQInstalled(activity)){
+            mQQUiListener?.onNotInstall()
+            return
+        }
         val params = Bundle()
         params.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT)
         params.putString(QQShare.SHARE_TO_QQ_TITLE, title)
@@ -102,6 +99,11 @@ class QQHelper {
      */
     fun customShare(activity: Activity, bundle: Bundle, listener: OnQQShareListener) {
         mQQUiListener = listener
+        // 检查QQ是否安装
+        if(!AppUtils.isQQInstalled(activity)){
+            mQQUiListener?.onNotInstall()
+            return
+        }
         QQShareActivity.share(activity, bundle)
     }
 
@@ -110,6 +112,11 @@ class QQHelper {
      */
     fun authLogin(context: Context, listener: OnQQAuthLoginListener) {
         mOnQQAuthLoginListener = listener
+        // 检查QQ是否安装
+        if(!AppUtils.isQQInstalled(context)){
+            mOnQQAuthLoginListener?.onNotInstall()
+            return
+        }
         context.startActivity(Intent(context, QQLoginActivity::class.java))
     }
 }

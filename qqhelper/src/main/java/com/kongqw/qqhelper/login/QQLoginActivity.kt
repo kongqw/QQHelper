@@ -1,13 +1,12 @@
 package com.kongqw.qqhelper.login
 
-import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.kongqw.qqhelper.QQHelper
 import com.kongqw.qqhelper.login.bean.QQLoginInfo
 import com.kongqw.qqhelper.utils.Logger
+import com.kongqw.qqhelper.utils.MetaUtil
 import com.tencent.connect.UserInfo
 import com.tencent.connect.common.Constants
 import com.tencent.tauth.IUiListener
@@ -16,6 +15,10 @@ import com.tencent.tauth.UiError
 import org.json.JSONObject
 
 class QQLoginActivity : AppCompatActivity() {
+
+    companion object {
+        private val TAG = QQLoginActivity::class.java.simpleName
+    }
 
     private var mQQLoginInfo: QQLoginInfo? = null
     private val mOnLoginListener = object : IUiListener {
@@ -49,13 +52,13 @@ class QQLoginActivity : AppCompatActivity() {
          * 登录取消
          */
         override fun onCancel() {
-            Logger.d("onQQAuthLoginCancel")
+            Logger.i(TAG, "onQQAuthLoginCancel")
             QQHelper.mOnQQAuthLoginListener?.onQQAuthLoginCancel()
             finish()
         }
 
         override fun onWarning(p0: Int) {
-            Logger.d("onWarning()")
+            Logger.i(TAG, "onWarning()")
             QQHelper.mOnQQAuthLoginListener?.onQQAuthLoginCancel()
             finish()
         }
@@ -64,7 +67,7 @@ class QQLoginActivity : AppCompatActivity() {
          * 登录失败
          */
         override fun onError(p0: UiError?) {
-            Logger.d("onQQAuthLoginError p0 = $p0")
+            Logger.i(TAG, "onQQAuthLoginError p0 = $p0")
             QQHelper.mOnQQAuthLoginListener?.onQQAuthLoginError(p0?.errorCode, p0?.errorMessage, p0?.errorDetail)
             finish()
         }
@@ -76,7 +79,7 @@ class QQLoginActivity : AppCompatActivity() {
          */
         override fun onComplete(p0: Any?) {
             try {
-                Logger.d("mOnGetUserInfoListener onComplete getUserInfo = $p0")
+                Logger.i(TAG, "mOnGetUserInfoListener onComplete getUserInfo = $p0")
                 val jsonObject = p0 as JSONObject
 
                 mQQLoginInfo?.ret = jsonObject.getInt("ret")
@@ -113,7 +116,7 @@ class QQLoginActivity : AppCompatActivity() {
          * 登录取消
          */
         override fun onCancel() {
-            Logger.d("onQQAuthLoginCancel")
+            Logger.i(TAG, "onQQAuthLoginCancel")
             QQHelper.mOnQQAuthLoginListener?.onQQAuthLoginCancel()
             finish()
         }
@@ -122,7 +125,7 @@ class QQLoginActivity : AppCompatActivity() {
          * 警告
          */
         override fun onWarning(p0: Int) {
-            Logger.d("onWarning($p0)")
+            Logger.i(TAG, "onWarning($p0)")
             QQHelper.mOnQQAuthLoginListener?.onQQAuthLoginWarning(p0)
             finish()
         }
@@ -131,7 +134,7 @@ class QQLoginActivity : AppCompatActivity() {
          * 登录失败
          */
         override fun onError(p0: UiError?) {
-            Logger.d("onQQAuthLoginError p0 = $p0")
+            Logger.i(TAG, "onQQAuthLoginError p0 = $p0")
             QQHelper.mOnQQAuthLoginListener?.onQQAuthLoginError(p0?.errorCode, p0?.errorMessage, p0?.errorDetail)
             finish()
         }
@@ -145,13 +148,13 @@ class QQLoginActivity : AppCompatActivity() {
 
         mQQLoginInfo = QQLoginInfo()
 
-        val qqAppId = getAppMetaData(applicationContext, "qq_app_id")
+        val qqAppId = MetaUtil.getQQAppId(applicationContext)
 
         mTencent = Tencent.createInstance(qqAppId, applicationContext)
-        Logger.d("QQAppId = $qqAppId")
+        Logger.i(TAG, "QQAppId = $qqAppId")
 
         val login = mTencent?.login(this, "all", mOnLoginListener)
-        Logger.d("login = $login")
+        Logger.i(TAG, "login = $login")
         QQHelper.mOnQQAuthLoginListener?.onQQAuthLoginStart()
     }
 
@@ -161,7 +164,7 @@ class QQLoginActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        Logger.d("onActivityResult requestCode = $requestCode  resultCode = $resultCode")
+        Logger.i(TAG, "onActivityResult requestCode = $requestCode  resultCode = $resultCode")
         if (resultCode != Constants.ACTIVITY_OK) {
             // 取消了
             super.onActivityResult(requestCode, resultCode, data)
@@ -173,21 +176,5 @@ class QQLoginActivity : AppCompatActivity() {
             Tencent.handleResultData(data, mOnLoginListener)
         }
         super.onActivityResult(requestCode, resultCode, data)
-    }
-
-
-    /**
-     * 读取AppMetaData信息
-     */
-    private fun getAppMetaData(context: Context, key: String): String? {
-        if (key.isEmpty()) {
-            return null
-        }
-        return try {
-            context.packageManager?.getApplicationInfo(context.packageName, PackageManager.GET_META_DATA)?.metaData?.get(key)?.toString()
-        } catch (e: PackageManager.NameNotFoundException) {
-            e.printStackTrace()
-            null
-        }
     }
 }

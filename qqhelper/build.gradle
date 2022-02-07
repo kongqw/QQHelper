@@ -21,19 +21,24 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.3.1'
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test:runner:1.3.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
-    api files('libs/open_sdk_3.5.7.4_r1bc9afe_lite.jar')
-
-    // api files('libs/open_sdk_r6019_lite.jar')
-    // api files('libs/open_sdk_3.5.7.4_r1bc9afe_lite.jar')
+    // https://wikinew.open.qq.com/index.html#/iwiki/864512506
+    api files('libs/open_sdk_3.5.10.3_r593ae92_lite.jar')
 }

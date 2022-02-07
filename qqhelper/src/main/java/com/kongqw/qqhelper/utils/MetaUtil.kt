@@ -3,7 +3,7 @@ package com.kongqw.qqhelper.utils
 import android.content.Context
 import android.content.pm.PackageManager
 
-object MetaUtil {
+internal object MetaUtil {
 
     /**
      * 读取AppMetaData信息

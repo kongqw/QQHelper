@@ -21,7 +21,7 @@ Step 2. Add the dependency
 
 ``` gradle
 dependencies {
-    implementation 'com.github.kongqw:QQHelper:1.0.1'
+    implementation 'com.github.kongqw:QQHelper:1.2.0'
 }
 ``` 
 
@@ -83,6 +83,7 @@ interface OnQQShareListener {
     fun onQQShareComplete(p0: Any?)
     fun onQQShareCancel()
     fun onQQShareError(errorCode: Int?, errorMessage: String?, errorDetail: String?)
+    fun onNotInstall()
 }
 ```
 
@@ -101,5 +102,6 @@ interface OnQQAuthLoginListener {
     fun onQQAuthLoginCancel()
     fun onQQAuthLoginFail()
     fun onQQAuthLoginError(errorCode: Int?, errorMessage: String?, errorDetail: String?)
+    fun onNotInstall()
 }
 ```

@@ -1,21 +1,21 @@
 project.ext {
 
     android = [
-            compileSdkVersion: 28,
+            compileSdkVersion: 30,
             minSdkVersion    : 16,
-            targetSdkVersion : 28,
+            targetSdkVersion : 30,
             versionCode      : 1,
             versionName      : "1.0.0"
     ]
 
     constants = [
-            applicationId      : "com.kongqw.qqhelper",
+            applicationId      : "com.easyvaas.sqk",
             group              : "com.github.kongqw",
-            QQ_APP_ID          : "xxx",
+            QQ_APP_ID          : "1106194332",
 
-            SIGN_TORE_FILE_PATH: "xxx",
-            SIGN_STORE_PASSWORD: "xxx",
-            SIGN_KEY_ALIAS     : "xxx",
-            SIGN_KEY_PASSWORD  : "xxx"
+            SIGN_TORE_FILE_PATH: "/Users/kongqw/Workspace/YiShiYun/kkandroid/singer/3000kr.keystore",
+            SIGN_STORE_PASSWORD: "3000kr",
+            SIGN_KEY_ALIAS     : "3000kr",
+            SIGN_KEY_PASSWORD  : "3000kr"
     ]
 }

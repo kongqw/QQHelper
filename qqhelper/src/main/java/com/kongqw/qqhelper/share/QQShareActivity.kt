@@ -16,6 +16,7 @@ class QQShareActivity : AppCompatActivity(), IUiListener {
     private var mTencent: Tencent? = null
 
     companion object {
+        private val TAG = QQShareActivity::class.java.simpleName
         private const val EXTRA_SHARE_PARAMS = "EXTRA_SHARE_PARAMS"
 
         fun share(context: Context, bundle: Bundle) {
@@ -39,7 +40,7 @@ class QQShareActivity : AppCompatActivity(), IUiListener {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        Logger.d("onActivityResult($requestCode, $resultCode, $data)")
+        Logger.i(TAG, "onActivityResult($requestCode, $resultCode, $data)")
         super.onActivityResult(requestCode, resultCode, data)
         Tencent.onActivityResultData(requestCode, resultCode, data, this)
     }
@@ -48,7 +49,7 @@ class QQShareActivity : AppCompatActivity(), IUiListener {
      * 分享完成
      */
     override fun onComplete(p0: Any?) {
-        Logger.d("分享完成  onComplete($p0)")
+        Logger.i(TAG, "分享完成  onComplete($p0)")
         QQHelper.mQQUiListener?.onQQShareComplete(p0)
         finish()
     }
@@ -57,7 +58,7 @@ class QQShareActivity : AppCompatActivity(), IUiListener {
      * 分享取消
      */
     override fun onCancel() {
-        Logger.d("分享取消  onCancel()")
+        Logger.i(TAG, "分享取消  onCancel()")
         QQHelper.mQQUiListener?.onQQShareCancel()
         finish()
     }
@@ -66,7 +67,7 @@ class QQShareActivity : AppCompatActivity(), IUiListener {
      * 分享警告
      */
     override fun onWarning(p0: Int) {
-        Logger.d("分享异常  onWarning($p0)")
+        Logger.i(TAG, "分享异常  onWarning($p0)")
         QQHelper.mQQUiListener?.onQQShareWarning(p0)
         finish()
     }
@@ -75,7 +76,7 @@ class QQShareActivity : AppCompatActivity(), IUiListener {
      * 分享异常
      */
     override fun onError(p0: UiError?) {
-        Logger.d("分享异常  onError($p0)")
+        Logger.i(TAG, "分享异常  onError($p0)")
         QQHelper.mQQUiListener?.onQQShareError(p0?.errorCode, p0?.errorMessage, p0?.errorDetail)
         finish()
     }

@@ -145,4 +145,8 @@ class MainActivity : AppCompatActivity(), OnQQShareListener, OnQQAuthLoginListen
     override fun onQQShareWarning(code: Int) {
         // Toast.makeText(applicationContext, "分享警告 code = $code", Toast.LENGTH_SHORT).show()
     }
+
+    override fun onNotInstall() {
+        Toast.makeText(applicationContext, "QQ未安装", Toast.LENGTH_SHORT).show()
+    }
 }

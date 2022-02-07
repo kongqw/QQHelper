@@ -11,4 +11,6 @@ interface OnQQShareListener {
     fun onQQShareError(errorCode: Int?, errorMessage: String?, errorDetail: String?)
 
     fun onQQShareWarning(code: Int)
+
+    fun onNotInstall()
 }
