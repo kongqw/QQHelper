@@ -24,6 +24,7 @@ class QQHelper {
         var mQQUiListener: OnQQShareListener? = null
         var mOnQQAuthLoginListener: OnQQAuthLoginListener? = null
 
+        @JvmStatic
         fun init(isLoggable: Boolean, isPermissionGranted: Boolean = true) {
 
             IS_LOGGABLE = isLoggable

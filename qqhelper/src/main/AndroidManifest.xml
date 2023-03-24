@@ -14,20 +14,24 @@
         <activity
             android:name=".share.QQShareActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
             android:theme="@style/Transparent" />
 
         <activity
             android:name=".login.QQLoginActivity"
+            android:exported="false"
             android:theme="@style/Transparent" />
 
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
             android:screenOrientation="behind"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <activity
             android:name="com.tencent.tauth.AuthActivity"
+            android:exported="true"
             android:launchMode="singleTask"
             android:noHistory="true">
             <intent-filter>

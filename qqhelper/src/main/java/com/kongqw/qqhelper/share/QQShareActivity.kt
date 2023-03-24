@@ -11,7 +11,7 @@ import com.tencent.tauth.IUiListener
 import com.tencent.tauth.Tencent
 import com.tencent.tauth.UiError
 
-class QQShareActivity : AppCompatActivity(), IUiListener {
+internal class QQShareActivity : AppCompatActivity(), IUiListener {
 
     private var mTencent: Tencent? = null
 

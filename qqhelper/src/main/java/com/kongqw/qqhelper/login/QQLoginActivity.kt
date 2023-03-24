@@ -14,7 +14,7 @@ import com.tencent.tauth.Tencent
 import com.tencent.tauth.UiError
 import org.json.JSONObject
 
-class QQLoginActivity : AppCompatActivity() {
+internal class QQLoginActivity : AppCompatActivity() {
 
     companion object {
         private val TAG = QQLoginActivity::class.java.simpleName

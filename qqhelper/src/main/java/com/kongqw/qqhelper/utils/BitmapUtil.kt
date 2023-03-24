@@ -3,7 +3,7 @@ package com.kongqw.qqhelper.utils
 import android.graphics.Bitmap
 import java.io.ByteArrayOutputStream
 
-object BitmapUtil {
+internal object BitmapUtil {
 
     /**
      * Bitmap 转 ByteArray
