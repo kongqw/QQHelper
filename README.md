@@ -21,9 +21,11 @@ Step 2. Add the dependency
 
 ``` gradle
 dependencies {
-    implementation 'com.github.kongqw:QQHelper:1.2.0'
+    implementation 'com.github.kongqw:QQHelper:1.3.1'
 }
 ``` 
+
+自行[下载](https://wiki.connect.qq.com/sdk%e4%b8%8b%e8%bd%bd)jar包，引入到项目中，Library不再将打入jar包。
 
 ### Gradle 配置 QQ_APP_ID
 
@@ -44,8 +46,9 @@ android {
 ## 初始化（非必要）
 
 ``` kotlin
-QQHelper.init(true)
+QQHelper.init(true, 是否已经授权)
 ```
+关系到上架后的隐私问题，详见 [Tencent.setIsPermissionGranted](https://wiki.connect.qq.com/qq%e7%99%bb%e5%bd%95)
 
 ## QQ分享
 
