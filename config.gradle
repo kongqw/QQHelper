@@ -9,13 +9,13 @@ project.ext {
     ]
 
     constants = [
-            applicationId      : "xxx",
+            applicationId      : "com.kongqw.qq",
             group              : "com.github.kongqw",
-            QQ_APP_ID          : "101903945",
+            QQ_APP_ID          : "xxx",
 
-            SIGN_TORE_FILE_PATH: "xxx",
-            SIGN_STORE_PASSWORD: "xxx",
-            SIGN_KEY_ALIAS     : "xxx",
-            SIGN_KEY_PASSWORD  : "xxx"
+            SIGN_TORE_FILE_PATH: "../signatures/test.jks",
+            SIGN_STORE_PASSWORD: "qqtest",
+            SIGN_KEY_ALIAS     : "qqtest",
+            SIGN_KEY_PASSWORD  : "qqtest"
     ]
 }
