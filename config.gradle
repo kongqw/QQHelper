@@ -1,9 +1,9 @@
 project.ext {
 
     android = [
-            compileSdkVersion: 30,
+            compileSdkVersion: 32,
             minSdkVersion    : 16,
-            targetSdkVersion : 30,
+            targetSdkVersion : 32,
             versionCode      : 1,
             versionName      : "1.0.0"
     ]
@@ -11,7 +11,7 @@ project.ext {
     constants = [
             applicationId      : "xxx",
             group              : "com.github.kongqw",
-            QQ_APP_ID          : "xxx",
+            QQ_APP_ID          : "101903945",
 
             SIGN_TORE_FILE_PATH: "xxx",
             SIGN_STORE_PASSWORD: "xxx",
